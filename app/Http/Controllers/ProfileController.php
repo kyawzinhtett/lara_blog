@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\Category;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
+use App\Models\Post;
 
 class ProfileController extends Controller
 {
@@ -18,6 +15,7 @@ class ProfileController extends Controller
         $posts = Post::where('user_id', auth()->id())
             ->orderBy('id', 'desc')
             ->simplePaginate(12);
+
         return view('profile.index')->with('posts', $posts);
     }
 
@@ -43,6 +41,7 @@ class ProfileController extends Controller
         $validated = $request->validated();
 
         Post::create($validated);
+
         return redirect('/profile')
             ->with('msg', config('message.msg.created'));
     }
@@ -55,6 +54,7 @@ class ProfileController extends Controller
         if (auth()->id() != $profile->user_id) {
             abort(404);
         }
+
         return view('profile.show')->with('post', $profile);
     }
 
@@ -82,6 +82,7 @@ class ProfileController extends Controller
     {
         $validated = $request->validated();
         $profile->update($validated);
+
         return redirect('/profile')
             ->with('msg', config('message.msg.updated'));
     }

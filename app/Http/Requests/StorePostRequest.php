@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Enums\CategoryEnum;
 use App\Enums\StatusEnum;
-use Illuminate\Validation\Rules\Enum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StorePostRequest extends FormRequest
 {
@@ -29,7 +29,7 @@ class StorePostRequest extends FormRequest
             'description' => 'required|max:255',
             'category' => [new Enum(CategoryEnum::class)],
             'user_id' => 'required',
-            'status' => [new Enum(StatusEnum::class)]
+            'status' => [new Enum(StatusEnum::class)],
         ];
     }
 
@@ -37,7 +37,7 @@ class StorePostRequest extends FormRequest
     {
         return [
             'name.required' => 'A title is required',
-            'description.required' => 'A description is required'
+            'description.required' => 'A description is required',
         ];
     }
 }

@@ -15,12 +15,11 @@ class CommentController extends Controller
         Comment::create([
             'user_id' => $request->user_id,
             'post_id' => $request->post_id,
-            'comment' => $request->comment
+            'comment' => $request->comment,
         ]);
 
         return back();
     }
-
 
     /**
      * Remove the specified resource from storage.
